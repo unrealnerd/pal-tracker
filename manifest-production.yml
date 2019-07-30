@@ -1,0 +1,7 @@
+---
+applications:
+- name: pal-tracker
+  path: src/PalTracker/bin/Release/netcoreapp2.1/publish/
+  random-route: pal-tracker-production-fluent-springhare.cfapps.io
+  env:
+    WELCOME_MESSAGE: Hello from production environment
