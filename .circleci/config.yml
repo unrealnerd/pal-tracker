@@ -51,7 +51,7 @@ jobs:
           command: |
             cd $EXTRACT_DEST
 
-            cf login -a $CF_API -u "$CF_USERNAME" -p "$CF_PASSWORD" -o "$CF_ORG" -s "shwetha.tenneti"
+            cf login -a $CF_API -u "$CF_USERNAME" -p "$CF_PASSWORD" -o "$CF_ORG" -s "shwetha_tenneti@Dell.com"
             cf push -f manifest-$ENVIRONMENT.yml
 
   deployToProd:
@@ -85,7 +85,7 @@ jobs:
           command: |
             cd $EXTRACT_DEST
 
-            cf login -a $CF_API -u "$CF_USERNAME" -p "$CF_PASSWORD" -o "$CF_ORG" -s "shwetha.tenneti"
+            cf login -a $CF_API -u "$CF_USERNAME" -p "$CF_PASSWORD" -o "$CF_ORG" -s "shwetha_tenneti@Dell.com"
             cf push -f manifest-$ENVIRONMENT.yml
 
 workflows:
