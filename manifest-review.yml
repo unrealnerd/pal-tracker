@@ -2,6 +2,6 @@
 applications:
 - name: pal-tracker
   path: src/PalTracker/bin/Release/netcoreapp2.1/publish/
-  random-route: pal-tracker-review-fluent-springhare.cfapps.io
+  random-route: true
   env:
     WELCOME_MESSAGE: Hello from review environment
