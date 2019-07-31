@@ -1,11 +1,13 @@
 @url=http://localhost:5000
-@TIME_ENTRY_ID=2
+@TIME_ENTRY_ID=1
 
 
 ###-- Get Time Entries
+# @name getTimeEntries
 GET {{url}}/time-entries
 
 ###-- Add Time Entry
+# @name addTimeEntry
 POST {{url}}/time-entries
 Content-Type: application/json
 
@@ -16,8 +18,14 @@ Content-Type: application/json
     "hours": 8
 }
 
-###-- Get Time Entries
+###-- Get first Time Entry
+# @name getFirstTimeEntry
+GET {{url}}/time-entries/{{getTimeEntries.response.body.$[0].id}}
+
+###-- Get Time Entry by Id
+# @name getFirstTimeEntry
 GET {{url}}/time-entries/{{TIME_ENTRY_ID}}
+
 
 ###-- Add Time Entry
 PUT {{url}}/time-entries/{{TIME_ENTRY_ID}}
@@ -33,3 +41,14 @@ Content-Type: application/json
 ###-- Delete
 
 DELETE  {{url}}/time-entries/{{TIME_ENTRY_ID}}
+
+###
+
+### GET time Entries
+curl {{url}}/time-entries
+
+### Add time Entry
+curl -i -X POST -H "Content-Type: application/json" {{url}}/time-entries -d "{\"projectId\": 1, \"userId\": 2, \"date\": \"2019-01-01\", \"hours\": 8}"
+
+### Delete time Entry
+curl -i -X DELETE -H "Content-Type: application/json" {{url}}/time-entries/{{TIME_ENTRY_ID}}
