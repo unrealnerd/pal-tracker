@@ -61,7 +61,7 @@ jobs:
 
             cf login -a $CF_API -u "$CF_USERNAME" -p "$CF_PASSWORD" -o "$CF_ORG" -s "shwetha_tenneti@Dell.com"
             cf push -f manifest-$ENVIRONMENT.yml
-            bash ./migrate-databases.sh pal-tracker . /root/project
+            bash ./migrate-databases.sh pal-tracker-migrate-review . /root/project
 
   deployToProd:
     docker:
