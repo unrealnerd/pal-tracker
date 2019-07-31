@@ -11,6 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Steeltoe.CloudFoundry.Connector.MySql.EFCore;
+using Steeltoe.Management.CloudFoundry;
+using Steeltoe.Management.Endpoint.CloudFoundry;
+using Steeltoe.Common.HealthChecks;
+using Steeltoe.Management.Endpoint.Info;
+
 
 namespace PalTracker
 {
@@ -28,6 +33,10 @@ namespace PalTracker
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<TimeEntryContext>(options => options.UseMySql(Configuration));
+            services.AddCloudFoundryActuators(Configuration);
+            services.AddScoped<IHealthContributor, TimeEntryHealthContributor>();
+            services.AddSingleton<IOperationCounter<TimeEntry>, OperationCounter<TimeEntry>>();
+            services.AddSingleton<IInfoContributor, TimeEntryInfoContributor>();
 
             services.AddSingleton(sp => new WelcomeMessage(
                 Configuration.GetValue<string>("WELCOME_MESSAGE", "WELCOME_MESSAGE not configured.")
@@ -57,6 +66,7 @@ namespace PalTracker
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseCloudFoundryActuators();
         }
     }
 }

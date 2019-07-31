@@ -1,4 +1,4 @@
-@url=http://localhost:5000
+@url=https://localhost:5001
 @TIME_ENTRY_ID=1
 
 
@@ -13,7 +13,7 @@ Content-Type: application/json
 
 {
     "projectId": 2,
-    "userId": 2,
+    "userId": 23452345,
     "date": "2019-01-01",
     "hours": 8
 }
@@ -40,7 +40,7 @@ Content-Type: application/json
 
 ###-- Delete
 
-DELETE  {{url}}/time-entries/{{TIME_ENTRY_ID}}
+DELETE  {{url}}/time-entries/{{getTimeEntries.response.body.$[0].id}}
 
 ###
 
